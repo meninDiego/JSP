@@ -11,7 +11,7 @@
 	<h1>Bem Vindo ao curso de JSP</h1>
 
 
-	<form action="ServeletLogin" method="post">
+	<form action="ServletLogin" method="post">
 	<input type="hidden"value= "<%= request.getParameter("url") %>" name= "url" > 
 
 		<table>
