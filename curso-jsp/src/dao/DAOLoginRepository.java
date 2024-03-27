@@ -16,7 +16,6 @@ public class DAOLoginRepository {
 	public DAOLoginRepository() {
 		connection = SingleConnectionBanco.getConnection();
 	}
-	
 	public boolean validarAutenticacao(ModelLogin modelLogin) throws Exception {
 		
 		String sql = "select * from model_login where upper(login) = upper(?) and upper(senha) = upper(?) ";
