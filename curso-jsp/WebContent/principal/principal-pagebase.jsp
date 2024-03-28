@@ -29,7 +29,7 @@
                                     <!-- Page-body start -->
                                     <div class="page-body">
                                         <div class="row">
-                                         
+                                         <h1>Conteúdo pagina base</h1>
                                         </div>
                                     </div>
                                     <!-- Page-body end -->
