@@ -40,27 +40,27 @@
                                                         
                                          <form class="form-material" action="<%= request.getContextPath() %>/ServletUsuarioController" method="post">
                                                             <div class="form-group form-default">
-                                                                <input type="text" name="id" id="id" class="form-control" readonly="readonly">
+                                                                <input type="text" name="id" id="id" class="form-control" readonly="readonly"value="${modoLogin.id}">
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label">Id:</label>
                                                             </div>
                                                             <div class="form-group form-default">
-                                                                <input type="text" name="nome" id="nome" class="form-control" required="required" value="">
+                                                                <input type="text" name="nome" id="nome" class="form-control" required="required" value="${modoLogin.nome}">
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label">Nome:</label>
                                                             </div>
                                                             <div class="form-group form-default">
-                                                                <input type="email" name="email" id="email" class="form-control" required="required"autocomplete="off">
+                                                                <input type="email" name="email" id="email" class="form-control" required="required"value="${modoLogin.email}">
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label">E-mail:</label>
                                                             </div>
                                                               <div class="form-group form-default">
-                                                                <input type="text" name="email" id="login" class="form-control" required="required"autocomplete="off">
+                                                                <input type="text" name="login" id="login" class="form-control" required="required"autocomplete="off"value="${modoLogin.login}">
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label">Login:</label>
                                                             </div>
                                                             <div class="form-group form-default">
-                                                                <input type="password" name="senha" id="senha" class="form-control" required="required"autocomplete="off">
+                                                                <input type="password" name="senha" id="senha" class="form-control" required="required"autocomplete="off"value="${modoLogin.senha}">
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label">Password</label>
                                                             </div>
@@ -73,7 +73,7 @@
                                          </div>
                                          </div>
                                          </div>
-                                         
+                                         <span>${msg}</span>
                                          
                                     </div>
                                     <!-- Page-body end -->
