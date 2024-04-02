@@ -5,18 +5,27 @@ import java.io.Serializable;
 public class ModelLogin implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private Long id;
 	private String nome;
 	private String email;
 	private String login;
 	private String senha;
-	
-	
+
+	public boolean isnovo() {
+
+		if (this.id == null) {
+			return true;//criar novo cadastro
+		} else if (this.id != null && this.id > 0) {
+		return false;//atualizar cadastro existente
+		}
+		return id == null;
+	}
+
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
+
 	public String getSenha() {
 		return senha;
 	}
@@ -56,7 +65,5 @@ public class ModelLogin implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
-	
 
 }

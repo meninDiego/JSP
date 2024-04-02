@@ -38,33 +38,33 @@
                                                         <h4 class="sub-title">Cadastro de Usuário</h4>
                                                         
                                                         
-                                         <form class="form-material" action="<%= request.getContextPath() %>/ServletUsuarioController" method="post">
-                                                            <div class="form-group form-default">
+                                         <form class="form-material" action="<%= request.getContextPath() %>/ServletUsuarioController" method="post" id="formUser">
+                                                            <div class="form-group form-default form-default form-static-label">
                                                                 <input type="text" name="id" id="id" class="form-control" readonly="readonly"value="${modoLogin.id}">
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label">Id:</label>
                                                             </div>
-                                                            <div class="form-group form-default">
+                                                            <div class="form-group form-default form-default form-static-label">
                                                                 <input type="text" name="nome" id="nome" class="form-control" required="required" value="${modoLogin.nome}">
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label">Nome:</label>
                                                             </div>
-                                                            <div class="form-group form-default">
+                                                            <div class="form-group form-default form-default form-static-label">
                                                                 <input type="email" name="email" id="email" class="form-control" required="required"value="${modoLogin.email}">
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label">E-mail:</label>
                                                             </div>
-                                                              <div class="form-group form-default">
+                                                              <div class="form-group form-default form-default form-static-label">
                                                                 <input type="text" name="login" id="login" class="form-control" required="required"autocomplete="off"value="${modoLogin.login}">
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label">Login:</label>
                                                             </div>
-                                                            <div class="form-group form-default">
+                                                            <div class="form-group form-default form-default form-static-label">
                                                                 <input type="password" name="senha" id="senha" class="form-control" required="required"autocomplete="off"value="${modoLogin.senha}">
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label">Password</label>
                                                             </div>
-                                                            <button class="btn btn-primary waves-effect waves-light">Novo</button>
+                                                            <button class="btn btn-primary waves-effect waves-light" onclick="limparForm();" >Novo</button>
                                                                 <button class="btn btn-success waves-effect waves-light">Salvar</button>
 													            <button class="btn btn-info waves-effect waves-light">Excluir</button>
 													          
@@ -89,6 +89,15 @@
    
     
   <jsp:include page="javascriptfile.jsp"></jsp:include>
+  <script type="text/javascript">
+function limparForm() {
+	var elementos = document.getElementById("formUser").elements;//Retorna os elementos html dentro do form 
+	
+	for(p = 0; p < elementos.length; p++){
+		elementos[p].value = "";
+	}
+	}
+</script>
 </body>
 
 </html>
