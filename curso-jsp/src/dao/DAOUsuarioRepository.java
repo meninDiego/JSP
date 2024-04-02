@@ -28,22 +28,22 @@ public class DAOUsuarioRepository {
 
 		preparedSql.execute();
 		connection.commit();
-		
+
 		return this.consultaUsuario(objeto.getLogin());
 
 	}
 
 	public ModelLogin consultaUsuario(String login) throws Exception {
-		
+
 		ModelLogin modelLogin = new ModelLogin();
-		
-		String sql = "select * from model_login where upper (login) = upper ('"+login+"')";
-		
+
+		String sql = "select * from model_login where upper (login) = upper ('" + login + "')";
+
 		PreparedStatement statement = connection.prepareStatement(sql);
-		
+
 		ResultSet resultado = statement.executeQuery();
-		
-		while (resultado.next()) /*Se tem resultado*/{
+
+		while (resultado.next()) /* Se tem resultado */ {
 			modelLogin.setId(resultado.getLong("id"));
 			modelLogin.setEmail(resultado.getString("email"));
 			modelLogin.setLogin(resultado.getString("login"));
@@ -51,7 +51,18 @@ public class DAOUsuarioRepository {
 			modelLogin.setNome(resultado.getString("nome"));
 		}
 		return modelLogin;
+
+	}
+
+	public boolean validarLogin(String login) throws Exception {
+		String sql = "select count(1) > 0 as existe from model_login where upper (login) = upper ('" + login + "')";
+		PreparedStatement statement = connection.prepareStatement(sql);
+
+		ResultSet resultado = statement.executeQuery();
 		
-		}
-	
+		resultado.next();//Para ele entrar nos resultados sql
+			return resultado.getBoolean("existe");
+			
+	}
+
 }
