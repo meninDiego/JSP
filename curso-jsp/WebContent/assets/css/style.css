@@ -10486,7 +10486,7 @@ body.menu-bottom #collapse-menu {
 .form-material .form-default.form-static-label .float-label {
   color: #000; }
 .form-material .form-default.form-static-label .form-control {
-  border-bottom-color: #000; }
+  border-bottom-color: #c0c0c0; }
 .form-material .material-group-default .material-addone i, .form-material .material-group-default .material-addone span {
   color: #d6d6d6; }
 .form-material .form-danger .form-control:focus ~ label {

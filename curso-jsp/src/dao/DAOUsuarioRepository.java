@@ -17,30 +17,29 @@ public class DAOUsuarioRepository {
 	}
 
 	public ModelLogin gravarUsuario(ModelLogin objeto) throws Exception {
-		
-		if(objeto.isnovo()) {//grava um novo
-			
 
-		String sql = "INSERT INTO model_login(login, senha, nome, email) VALUES (?, ?, ?, ?);";
-		PreparedStatement preparedSql = connection.prepareStatement(sql);
+		if (objeto.isnovo()) {// grava um novo
 
-		preparedSql.setString(1, objeto.getLogin());
-		preparedSql.setString(2, objeto.getSenha());
-		preparedSql.setString(3, objeto.getNome());
-		preparedSql.setString(4, objeto.getEmail());
+			String sql = "INSERT INTO model_login(login, senha, nome, email) VALUES (?, ?, ?, ?);";
+			PreparedStatement preparedSql = connection.prepareStatement(sql);
 
-		preparedSql.execute();
-		connection.commit();
-		}else {
-			String sql = "UPDATE model_login SET login=?, senha=?, nome=?, email=? WHERE id= "+objeto.getId()+";"; 
-			
+			preparedSql.setString(1, objeto.getLogin());
+			preparedSql.setString(2, objeto.getSenha());
+			preparedSql.setString(3, objeto.getNome());
+			preparedSql.setString(4, objeto.getEmail());
+
+			preparedSql.execute();
+			connection.commit();
+		} else {
+			String sql = "UPDATE model_login SET login=?, senha=?, nome=?, email=? WHERE id= " + objeto.getId() + ";";
+
 			PreparedStatement prepareSql = connection.prepareStatement(sql);
-			
+
 			prepareSql.setString(1, objeto.getLogin());
 			prepareSql.setString(2, objeto.getSenha());
 			prepareSql.setString(3, objeto.getNome());
 			prepareSql.setString(4, objeto.getEmail());
-			
+
 			prepareSql.executeUpdate();
 			connection.commit();
 		}
@@ -75,10 +74,22 @@ public class DAOUsuarioRepository {
 		PreparedStatement statement = connection.prepareStatement(sql);
 
 		ResultSet resultado = statement.executeQuery();
-		
-		resultado.next();//Para ele entrar nos resultados sql
-			return resultado.getBoolean("existe");
-			
+
+		resultado.next();// Para ele entrar nos resultados sql
+		return resultado.getBoolean("existe");
+
 	}
 
+	public void deletarUser(String idUser) throws Exception {
+
+		String sql = "DELETE FROM model_login WHERE id = ?;";
+
+		PreparedStatement preparesql = connection.prepareStatement(sql);
+
+		preparesql.setLong(1, Long.parseLong(idUser));
+		preparesql.executeUpdate();
+
+		connection.commit();
+
+	}
 }

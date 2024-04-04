@@ -39,6 +39,9 @@
                                                         
                                                         
                                          <form class="form-material" action="<%= request.getContextPath() %>/ServletUsuarioController" method="post" id="formUser">
+                                         
+                                         <input type="hidden" name="acao" id="acao" value="">
+                                         
                                                             <div class="form-group form-default form-default form-static-label">
                                                                 <input type="text" name="id" id="id" class="form-control" readonly="readonly"value="${modoLogin.id}">
                                                                 <span class="form-bar"></span>
@@ -64,16 +67,16 @@
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label">Password</label>
                                                             </div>
-                                                            <button class="btn btn-primary waves-effect waves-light" onclick="limparForm();" >Novo</button>
-                                                                <button class="btn btn-success waves-effect waves-light">Salvar</button>
-													            <button class="btn btn-info waves-effect waves-light">Excluir</button>
+                                                            <button type="button" class="btn btn-primary waves-effect waves-light" onclick="limparForm();" >Novo</button>
+                                                                <button type="submit" class="btn btn-success waves-effect waves-light">Salvar</button>
+													            <button type="button" class="btn btn-info waves-effect waves-light" onclick="criarDeleteComAjax();">Excluir</button>
 													          
                                                         </form>
                                          </div>
                                          </div>
                                          </div>
                                          </div>
-                                         <span>${msg}</span>
+                                         <span id="msg">${msg}</span>
                                          
                                     </div>
                                     <!-- Page-body end -->
@@ -90,6 +93,45 @@
     
   <jsp:include page="javascriptfile.jsp"></jsp:include>
   <script type="text/javascript">
+  
+  function criarDeleteComAjax() {
+	
+	  if(confirm("Deseja realmente excluir os dados?")){
+		  
+		  var urlAction = document.getElementById('formUser').action;
+		  var idUser = document.getElementById('id').value;
+		  
+		  $.ajax({
+			  
+			  method : "get", 
+			  url : urlAction,
+			  data : "id=" + idUser + '&acao=deletarajax',
+			  success : function (response){
+				  
+				  limparForm();
+				  document.getElementById('msg').textContent = response;
+			  }
+			  
+		  }).fail(function(xhr, status, errorThrown){
+			  alert('Erro ao deletar usuario por id : ' + xhr.responseText);
+		  });
+		  
+	  }
+	  
+}
+  
+  
+  function criarDelete() {
+	  
+	  if(confirm("Deseja realmente excluir os dados?")){
+		  	  
+	  document.getElementById("formUser").method = 'get';
+	  document.getElementById("acao").value = 'deletar';
+	  document.getElementById("formUser").submit();
+	  }
+	  
+}
+  
 function limparForm() {
 	var elementos = document.getElementById("formUser").elements;//Retorna os elementos html dentro do form 
 	
